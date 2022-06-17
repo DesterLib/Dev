@@ -1,10 +1,10 @@
 {
   "folders": [
     {
-      "path": "Server"
+      "path": "/workspaces/Server"
     },
     {
-      "path": "Frontend"
+      "path": "/workspaces/Frontend"
     }
   ]
 }

@@ -1,6 +1,6 @@
 {
     "name": "DesterLib",
-    "onCreateCommand": "scripts/setup.sh",
+    "onCreateCommand": "bash scripts/setup.sh",
     "forwardPorts": [35500, 35510, 35530],
     "customizations": {
         "codespaces": {
