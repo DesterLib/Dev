@@ -1,14 +1,23 @@
 {
-  "customizations": {
-    "codespaces": {
-      "repositories": {
-        "DesterLib/Server": {
-          "permissions": { "contents": "write", "pull_requests": "write" }
-        },
-        "DesterLib/Frontend": {
-          "permissions": { "contents": "write", "pull_requests": "write" }
+    "name": "DesterLib",
+    "onCreateCommand": "scripts/setup.sh",
+    "forwardPorts": [35500, 35510, 35530],
+    "customizations": {
+        "codespaces": {
+            "repositories": {
+                "DesterLib/Server": {
+                    "permissions": {
+                        "contents": "write",
+                        "pull_requests": "write"
+                    }
+                },
+                "DesterLib/Frontend": {
+                    "permissions": {
+                        "contents": "write",
+                        "pull_requests": "write"
+                    }
+                }
+            }
         }
-      }
     }
-  }
 }
