@@ -1,7 +1,11 @@
 {
     "name": "DesterLib",
     "onCreateCommand": "bash scripts/setup.sh",
-    "forwardPorts": [35500, 35510, 35530],
+    "forwardPorts": [
+        35500,
+        35510,
+        35530
+    ],
     "customizations": {
         "codespaces": {
             "repositories": {
@@ -19,5 +23,14 @@
                 }
             }
         }
-    }
+    },
+    "extensions": [
+        "mikestead.dotenv",
+        "dsznajder.es7-react-js-snippets",
+        "dbaeumer.vscode-eslint",
+        "VisualStudioExptTeam.vscodeintellicode",
+        "esbenp.prettier-vscode",
+        "ms-python.vscode-pylance",
+        "ms-python.python"
+    ]
 }
