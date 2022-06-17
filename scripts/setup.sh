@@ -5,3 +5,5 @@ gh repo clone DesterLib/Frontend /workspaces/Frontend
 
 pip3 install -r /workspaces/Server/requirements.txt
 cd /workspaces/Frontend && npm install && cd /workspaces
+
+curl https://rclone.org/install.sh | sudo bash
