@@ -1,0 +1,14 @@
+{
+  "customizations": {
+    "codespaces": {
+      "repositories": {
+        "DesterLib/Server": {
+          "permissions": { "contents": "write", "pull_requests": "write" }
+        },
+        "DesterLib/Frontend": {
+          "permissions": { "contents": "write", "pull_requests": "write" }
+        }
+      }
+    }
+  }
+}
