@@ -1,5 +1,5 @@
 {
-    "name": "DesterLib",
+    "name": "Dester",
     "onCreateCommand": "bash scripts/setup.sh",
     "forwardPorts": [
         35500,

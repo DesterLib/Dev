@@ -1,0 +1,11 @@
+{
+    "folders": [
+        {
+            "path": "/workspaces/Server"
+        },
+        {
+            "path": "/workspaces/Frontend"
+        }
+    ],
+    "python.defaultInterpreterPath": "/workspaces/Server/.venv/bin/python3"
+}
