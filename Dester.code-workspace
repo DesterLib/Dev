@@ -5,6 +5,9 @@
         },
         {
             "path": "/workspaces/Frontend"
+        },
+        {
+            "path": "/workspaces/Docs"
         }
     ],
     "python.defaultInterpreterPath": "/workspaces/Server/.venv/bin/python3"

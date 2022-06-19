@@ -20,6 +20,12 @@
                         "contents": "write",
                         "pull_requests": "write"
                     }
+                },
+                "DesterLib/Docs": {
+                    "permissions": {
+                        "contents": "write",
+                        "pull_requests": "write"
+                    }
                 }
             }
         }
