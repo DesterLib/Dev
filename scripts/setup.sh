@@ -19,3 +19,10 @@ cd /workspaces/Docs && npm install && cd /workspaces
 
 # Rclone setup
 curl https://rclone.org/install.sh | sudo bash
+
+# Wine setup
+sudo dpkg --add-architecture i386
+wget -qO- https://dl.winehq.org/wine-builds/winehq.key | sudo apt-key add -
+sudo apt-add-repository "deb https://dl.winehq.org/wine-builds/ubuntu/ $(lsb_release -cs) main"
+sudo apt update
+sudo apt install -y --install-recommends winehq-stable
