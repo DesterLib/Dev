@@ -6,10 +6,21 @@
         35510,
         35530
     ],
+    "portsAttributes": {
+        "35500": {
+            "label": "Backend"
+        },
+        "35510": {
+            "label": "Frontend"
+        },
+        "35530": {
+            "label": "Rclone"
+        }
+    },
     "customizations": {
         "codespaces": {
             "repositories": {
-                "DesterLib/Server": {
+                "DesterLib/Backend": {
                     "permissions": {
                         "contents": "write",
                         "pull_requests": "write"
