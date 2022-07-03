@@ -1,0 +1,58 @@
+name: Build
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup ENV
+        run: echo "VERSION=$(date '+%Y.%-m.%-d')-prerelease" >> $GITHUB_ENV
+      - name: Setup Backend
+        run: |
+          gh repo clone DesterLib/Backend ${{ github.WORKSPACE }}/Backend
+          rm -rf ${{ github.WORKSPACE }}/Backend/.git
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Setup Frontend
+        run: |
+          gh repo clone DesterLib/Frontend ${{ github.WORKSPACE }}/Frontend
+          rm -rf ${{ github.WORKSPACE }}/Frontend/.git
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Install Frontend Dependencies
+        run: |
+          npm -C ${{ github.WORKSPACE }}/Frontend config set version ${{ env.VERSION }}
+          npm -C ${{ github.WORKSPACE }}/Frontend ci
+      - name: Install Desktop Dependencies
+        run: |
+          sudo dpkg --add-architecture i386
+          sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 86B72ED9
+          sudo add-apt-repository 'deb [arch=amd64] https://mirror.mxe.cc/repos/apt focal main'
+          sudo apt -qq update
+          sudo apt install -y --allow-downgrades libpcre2-8-0=10.34-7
+          sudo apt install -y wine32
+      - name: Build Frontend and Desktop
+        run: npm -C ${{ github.WORKSPACE }}/Frontend run electron:build
+        env: 
+          CI: false
+      - name: Package Server
+        run: |
+          cp -rf ${{ github.WORKSPACE }}/Frontend/build ${{ github.WORKSPACE }}/Backend
+          cd ${{ github.WORKSPACE }}/Backend
+          zip -r ${{ github.WORKSPACE }}/Dester.v${{ env.VERSION }}.zip *
+          cd ${{ github.WORKSPACE }}
+      - name: Package Desktop
+        run: mv ${{ github.WORKSPACE }}/Frontend/dist/Dester.Desktop.*.exe ${{ github.WORKSPACE }}/Dester.Desktop.v${{ env.VERSION }}.exe
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            Dester.v${{ env.VERSION }}.zip
+            Dester.Desktop.v${{ env.VERSION }}.exe
+          prerelease: true
+          tag_name: v${{ env.VERSION }}
