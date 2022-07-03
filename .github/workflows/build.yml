@@ -26,7 +26,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Install Frontend Dependencies
         run: |
-          npm -C ${{ github.WORKSPACE }}/Frontend config set version ${{ env.VERSION }}
           jq '.version="${{ env.VERSION }}"' ${{ github.WORKSPACE }}/Frontend/package.json --indent 4 > ${{ github.WORKSPACE }}/Frontend/tmp-package.json && mv ${{ github.WORKSPACE }}/Frontend/tmp-package.json ${{ github.WORKSPACE }}/Frontend/package.json
           npm -C ${{ github.WORKSPACE }}/Frontend ci
       - name: Install Desktop Dependencies
