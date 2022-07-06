@@ -18,6 +18,10 @@ jobs:
           rm -rf ${{ github.WORKSPACE }}/Backend/.git
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Setup python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10.4'
       - name: Setup Frontend
         run: |
           gh repo clone DesterLib/Frontend ${{ github.WORKSPACE }}/Frontend
@@ -48,6 +52,8 @@ jobs:
           cd ${{ github.WORKSPACE }}
       - name: Package Desktop
         run: mv ${{ github.WORKSPACE }}/Frontend/dist/Dester.Desktop.*.exe ${{ github.WORKSPACE }}/Dester.Desktop.v${{ env.VERSION }}.exe
+      - name: Generate CHANGELOG
+        run: RELEASE_BODY=$(curl -s https://gist.githubusercontent.com/EverythingSuckz/d74acde00ea0ed9415ec5b2b7872f343/raw/b78b240c495f0017d124962b7723f9f603c46ff6/changelogs.py | python)
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
@@ -55,4 +61,5 @@ jobs:
             Dester.v${{ env.VERSION }}.zip
             Dester.Desktop.v${{ env.VERSION }}.exe
           prerelease: true
+          body: ${{ env.RELEASE_BODY }}
           tag_name: v${{ env.VERSION }}
