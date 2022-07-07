@@ -53,7 +53,7 @@ jobs:
       - name: Package Desktop
         run: mv ${{ github.WORKSPACE }}/Frontend/dist/Dester.Desktop.*.exe ${{ github.WORKSPACE }}/Dester.Desktop.v${{ env.VERSION }}.exe
       - name: Generate CHANGELOG
-        run: curl -s https://gist.githubusercontent.com/EverythingSuckz/d74acde00ea0ed9415ec5b2b7872f343/raw/b78b240c495f0017d124962b7723f9f603c46ff6/changelogs.py | python >> CHANGELOGS.txt
+        run: curl -s https://gist.githubusercontent.com/EverythingSuckz/d74acde00ea0ed9415ec5b2b7872f343/raw | python >> CHANGELOGS.txt
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
